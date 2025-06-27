@@ -20,8 +20,6 @@ def send_message(chat_id, text, keyboard=None):
     response = requests.post(url, json=payload, headers=headers)
     return response.json()
 
-
-# Главное меню с кнопками
 def main_menu():
     return {
         "inlineKeyboard": [
@@ -45,8 +43,8 @@ def webhook():
     callback = data.get("callbackQuery")
 
     if message:
-        chat_id = message["chat"]["chatId"]
-        text = message.get("text", "")
+        chat_id = message["recipient"]["chat_id"]
+        text = message.get("body", {}).get("text", "")
 
         if text == "/start":
             send_message(chat_id, "Привет! Выберите, что хотите 🎶", main_menu())
@@ -54,7 +52,7 @@ def webhook():
             send_message(chat_id, "Нажмите кнопку ниже 👇", main_menu())
 
     elif callback:
-        chat_id = callback["message"]["chat"]["chatId"]
+        chat_id = callback["message"]["recipient"]["chat_id"]
         data = callback["callbackData"]
 
         if data == "top":
@@ -69,7 +67,6 @@ def webhook():
             send_message(chat_id, "Неизвестная команда 😐")
 
     return "ok", 200
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
