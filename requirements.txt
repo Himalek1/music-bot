@@ -1,0 +1,5 @@
+requests
+aiohttp
+yt-dlp
+ffmpeg-python
+vk_api
