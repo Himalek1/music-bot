@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = os.getenv("f9LHodD0cOKUwU3M9gFI9E_LzkT0rOafU1Gky1RGDH0PEyp71-zHvQLffC_Cey6AAVj5GYMpY1PVRX97OWQI")
 
 MAX_API_URL = "https://botapi.myteam.mail.ru/v1"
 
